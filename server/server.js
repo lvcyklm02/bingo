@@ -35,10 +35,10 @@ const auth = require("./auth");
 const socketManager = require("./server-socket");
 
 // Server configuration below
-// TODO change connection URL after setting up your team database
-const mongoConnectionURL = process.env.MONGO_SRV;
-// TODO change database name to the name you chose
-const databaseName = "FILL_ME_IN";
+// DONE: change connection URL after setting up your team database
+const mongoConnectionURL = "mongodb+srv://lvcyklm02:njubn9C1EoSI4lMw@actualbingo.0hcsnvw.mongodb.net/?retryWrites=true&w=majority";
+// DONE: change database name to the name you chose
+const databaseName = "actualbingo";
 
 // mongoose 7 warning
 mongoose.set("strictQuery", false);
