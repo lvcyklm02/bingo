@@ -38,7 +38,8 @@ const socketManager = require("./server-socket");
 // DONE: change connection URL after setting up your team database
 const mongoConnectionURL = "mongodb+srv://lvcyklm02:njubn9C1EoSI4lMw@actualbingo.0hcsnvw.mongodb.net/?retryWrites=true&w=majority";
 // DONE: change database name to the name you chose
-const databaseName = "actualbingo";
+// keep test db and actual db separate
+const databaseName = "actual_bingo_test";
 
 // mongoose 7 warning
 mongoose.set("strictQuery", false);
@@ -63,8 +64,8 @@ app.use(express.json());
 // set up a session, which will persist login data across requests
 app.use(
   session({
-    // TODO: add a SESSION_SECRET string in your .env file, and replace the secret with process.env.SESSION_SECRET
-    secret: "session-secret",
+    // DONE: add a SESSION_SECRET string in your .env file, and replace the secret with process.env.SESSION_SECRET
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
   })
