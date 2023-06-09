@@ -11,17 +11,22 @@ export class Bingo {
     //                         the board to complete tasks, recorded in booleans in the completed_mask 2D array.
     //
 
-    constructor(tasks, completed) {
+    constructor(tasks, completed_mask = null) {
         this.tasks = tasks;
-        this.completed = [];
+        if (completed_mask == undefined) {
+            this.completed_mask = [];
 
-        for (let row = 0; row < 5; row++) {
-            let new_row = [];
-            for (let col = 0; col < 5; col++) {
-                new_row.push(False);
+            for (let row = 0; row < 5; row++) {
+                let new_row = [];
+                for (let col = 0; col < 5; col++) {
+                    new_row.push(false);
+                }
+                this.completed_mask.push(new_row);
             }
-            this.completed.push(new_row);
+        } else {
+            this.completed_mask = completed_mask;
         }
+
     }
 
     /**
@@ -40,10 +45,13 @@ export class Bingo {
             }
 
             task_list = task_list + (counter + 1) + ". " + task + isDone + "\n";
+            counter++;
         }
 
         if (this.isBingo()) {
             task_list = task_list + "BINGO!"
+        } else {
+            task_list = task_list + "NOT BINGO!"
         }
 
         return task_list
@@ -88,10 +96,10 @@ export class Bingo {
         let first = [(0, 0), (1, 1), (2, 2), (3, 3), (4, 4)];
         let second = [(0, 4), (1, 3), (2, 2), (3, 1), (4, 0)];
 
-        if (!first.map((r, c) => (!this.completed_mask[r][c])).some()) {
+        if (!(first.some((r, c) => !this.completed_mask[r][c]))) {
             return true;
         }
-        if (!second.map((r, c) => (!this.completed_mask[r][c])).some()) {
+        if (!(second.some((r, c) => !this.completed_mask[r][c]))) {
             return true;
         }
     }
