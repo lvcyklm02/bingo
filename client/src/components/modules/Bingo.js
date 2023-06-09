@@ -66,17 +66,17 @@ export class Bingo {
      *          coordinate cell of the bingo, which means modified mask at location
      */
     click(click_row, click_col) {
-        new_completed_mask = [];
+        let new_completed_mask = [];
 
         for (let row = 0; row < 5; row++) {
             let new_row = [];
             for (let col = 0; col < 5; col++) {
-                new_row.push(this.completed_mask[r][c]);
+                new_row.push(this.completed_mask[row][col]);
             }
             new_completed_mask.push(new_row);
         }
 
-        new_completed_mask[click_row][click_col] = !new_completed_mask[click_row][click_col];
+        new_completed_mask[click_row - 1][click_col - 1] = !new_completed_mask[click_row - 1][click_col - 1];
 
         return new Bingo(this.tasks, new_completed_mask);
     }

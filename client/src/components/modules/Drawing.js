@@ -69,7 +69,7 @@ const draw = (ctx, bingo, color) => {
     for (let row = 1; row < 6; row++) {
         for (let col = 1; col < 6; col++) {
             let text = bingo.tasks[counter];
-            let completed_mask = bingo.completed_mask[row - 1][col - 1]
+            let completed_mask = bingo.completed_mask[col - 1][row - 1]
             drawColorBox(ctx, (row - 1 / 2) * BOX_SIZE, (col - 1 / 2) * BOX_SIZE, text, completed_mask, color);
             counter++;
         }
