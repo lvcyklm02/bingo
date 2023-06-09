@@ -1,6 +1,8 @@
 import React, { useRef, useEffect } from 'react'
 import draw from '../modules/Drawing'
 
+import "./Canvas.css";
+
 const BOX_SIZE = 100;
 
 
@@ -19,7 +21,7 @@ const Canvas = props => {
 
     }, [draw])
 
-    return <canvas ref={canvasRef} {...props} />
+    return <canvas id="canvas" ref={canvasRef} {...props} />
 }
 
 export default Canvas

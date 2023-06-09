@@ -3,7 +3,7 @@ const BOX_SIZE = 100;
 
 // categorical colors from
 // https://github.com/d3/d3-scale-chromatic/tree/v2.0.0#schemeCategory10
-const COLORS = [
+const BASE_COLORS = [
     '#1f77b4',
     '#ff7f0e',
     '#2ca02c',
@@ -17,12 +17,13 @@ const COLORS = [
 ];
 
 // semitransparent versions of those colors
-const BACKGROUNDS = COLORS.map((color) => color + '60');
+const COLORS = BASE_COLORS.map((color) => color + '60');
+const COLORS_LIGHT = COLORS.map((color) => color + '60');
 
 /**
  * Draw a black square filled with a given color.
  * 
- * @param canvas canvas to draw on
+ * @param cts context of the canvas to draw on
  * @param x x position of center of box
  * @param y y position of center of box
  * @param color color index
@@ -43,26 +44,28 @@ function drawColorBox(ctx, x, y, color) {
     context.strokeRect(-BOX_SIZE / 2, -BOX_SIZE / 2, BOX_SIZE, BOX_SIZE);
 
     // fill with a random semitransparent color
-    context.fillStyle = BACKGROUNDS[color] ?? assert.fail();
+    context.fillStyle = COLORS[color] ?? assert.fail();
     context.fillRect(-BOX_SIZE / 2, -BOX_SIZE / 2, BOX_SIZE, BOX_SIZE);
 
     // reset the origin and styles back to defaults
     context.restore();
 }
 
-const draw = (ctx, frameCount) => {
-    let color = 0 // FIXME: take color as a prop
+/**
+ * Draws five by five bingo board of user's color
+ * @param {canvas context} ctx 
+ * @param {number} color 
+ * @returns 
+ */
+const draw = (ctx, color) => {
 
     for (let row = 1; row < 6; row++) {
         for (let col = 1; col < 6; col++) {
-
             drawColorBox(ctx, (row - 1 / 2) * BOX_SIZE, (col - 1 / 2) * BOX_SIZE, color);
         }
     }
 
-
     return;
-
 }
 
 export default draw
