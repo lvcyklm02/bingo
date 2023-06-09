@@ -34,12 +34,15 @@ const Skeleton = ({ userId, handleLogin, handleLogout }) => {
       ) : (
         <GoogleLogin onSuccess={handleLogin} onError={(err) => console.log(err)} />
       )}
-      <h1>actual bingo</h1>
-      <h2>spend this summer doing actual things youknowwhadimean</h2>
+      <div id="mainblock">
+        <h1>actual bingo</h1>
+        <h2>spend this summer doing actual things</h2>
 
-      <Canvas client={client} />
+        <Canvas client={client} />
+        <input></input>
+        <button onClick={() => client.writeToggle()} >Edit</button>
 
-
+      </div>
     </GoogleOAuthProvider>
   );
 };

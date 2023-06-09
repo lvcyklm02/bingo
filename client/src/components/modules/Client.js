@@ -7,6 +7,7 @@ export class Client {
 
     constructor(bingo) {
         this.bingo = bingo;
+        this.write = false;
     }
 
     /**
@@ -18,6 +19,13 @@ export class Client {
         return this.bingo;
     }
 
+    /**
+     * Changes write toggle
+     */
+    writeToggle() {
+        this.write = !this.write;
+        console.log("writing:", this.write);
+    }
 
     /**
      * Gets bingo that is the result of user click on a cell at (row, col).

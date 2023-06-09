@@ -16,9 +16,9 @@ const BASE_COLORS = [
     '#17becf',
 ];
 
-// semitransparent versions of those colors
-const COLORS = BASE_COLORS.map((color) => color + '60');
-const COLORS_LIGHT = COLORS.map((color) => color + '60');
+// colors and light version
+const COLORS = ["#b4a7d6ff", "#a4c2f4ff", "#b6d7a8ff"];
+const COLORS_LIGHT = ["#d9d2e9", "#c9daf8", "#d9ead3"];
 
 /**
  * Draw a black square filled with a given color.
@@ -31,6 +31,8 @@ const COLORS_LIGHT = COLORS.map((color) => color + '60');
  */
 function drawColorBox(ctx, x, y, text, completed_mask, color) {
     const context = ctx;
+    const fillColor = ((completed_mask) ? COLORS_LIGHT[color] : COLORS[color]);
+    const textColor = ((completed_mask) ? COLORS[color] : COLORS_LIGHT[color]);
 
     // save original context settings before we translate and change colors
     context.save();
@@ -40,16 +42,15 @@ function drawColorBox(ctx, x, y, text, completed_mask, color) {
     context.translate(x, y);
 
     // draw the outer outline box centered on the origin (which is now (x,y))
-    context.strokeStyle = 'black';
-    context.lineWidth = 2;
+    context.strokeStyle = COLORS_LIGHT[color];
+    context.lineWidth = 10;
     context.strokeRect(-BOX_SIZE / 2, -BOX_SIZE / 2, BOX_SIZE, BOX_SIZE);
 
     // fill with a random semitransparent color
-    color = ((completed_mask) ? COLORS_LIGHT[color] : COLORS[color]);
-    context.fillStyle = color ?? assert.fail();
+    context.fillStyle = fillColor ?? assert.fail();
     context.fillRect(-BOX_SIZE / 2, -BOX_SIZE / 2, BOX_SIZE, BOX_SIZE);
 
-    context.fillStyle = "black";
+    context.fillStyle = textColor;
     context.font = "bold 18px Arial";
     context.fillText(text, 0, 0);
 

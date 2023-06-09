@@ -28,7 +28,7 @@ const Canvas = props => {
             // send x and y to client
             client.click(row, col); // this function will check if a star can be placed there
             // clear canvas, then draw the board again
-            const context = canvas.getContext('2d');
+
             context?.clearRect(0, 0, canvas.width, canvas.height);
             draw(context, client.getCurrentBingo(), 0);
 
