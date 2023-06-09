@@ -38,6 +38,8 @@ const Skeleton = ({ userId, handleLogin, handleLogout }) => {
       <h2>spend this summer doing actual things youknowwhadimean</h2>
 
       <Canvas client={client} />
+
+
     </GoogleOAuthProvider>
   );
 };

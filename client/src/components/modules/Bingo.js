@@ -58,6 +58,30 @@ export class Bingo {
     }
 
     /**
+     * Returns bingo post user click
+     * 
+     * @param row 1-index row coordinate of cell that user clicked
+     * @param col 1-index column coordinate of cell that user clicked
+     * @returns new Puzzle instance that is the result of a user clicking on the (row, col)
+     *          coordinate cell of the bingo, which means modified mask at location
+     */
+    click(click_row, click_col) {
+        new_completed_mask = [];
+
+        for (let row = 0; row < 5; row++) {
+            let new_row = [];
+            for (let col = 0; col < 5; col++) {
+                new_row.push(this.completed_mask[r][c]);
+            }
+            new_completed_mask.push(new_row);
+        }
+
+        new_completed_mask[click_row][click_col] = !new_completed_mask[click_row][click_col];
+
+        return new Bingo(this.tasks, new_completed_mask);
+    }
+
+    /**
      * return if any row, col, or diagonal has been completed.
      */
     isBingo() {

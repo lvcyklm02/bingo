@@ -29,7 +29,7 @@ const COLORS_LIGHT = COLORS.map((color) => color + '60');
  * @param text fill text
  * @param color color index
  */
-function drawColorBox(ctx, x, y, text, color) {
+function drawColorBox(ctx, x, y, text, completed_mask, color) {
     const context = ctx;
 
     // save original context settings before we translate and change colors
@@ -45,7 +45,8 @@ function drawColorBox(ctx, x, y, text, color) {
     context.strokeRect(-BOX_SIZE / 2, -BOX_SIZE / 2, BOX_SIZE, BOX_SIZE);
 
     // fill with a random semitransparent color
-    context.fillStyle = COLORS[color] ?? assert.fail();
+    color = ((completed_mask) ? COLORS_LIGHT[color] : COLORS[color]);
+    context.fillStyle = color ?? assert.fail();
     context.fillRect(-BOX_SIZE / 2, -BOX_SIZE / 2, BOX_SIZE, BOX_SIZE);
 
     context.fillStyle = "black";
@@ -68,7 +69,8 @@ const draw = (ctx, bingo, color) => {
     for (let row = 1; row < 6; row++) {
         for (let col = 1; col < 6; col++) {
             let text = bingo.tasks[counter];
-            drawColorBox(ctx, (row - 1 / 2) * BOX_SIZE, (col - 1 / 2) * BOX_SIZE, text, color);
+            let completed_mask = bingo.completed_mask[row - 1][col - 1]
+            drawColorBox(ctx, (row - 1 / 2) * BOX_SIZE, (col - 1 / 2) * BOX_SIZE, text, completed_mask, color);
             counter++;
         }
     }
