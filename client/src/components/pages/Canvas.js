@@ -8,6 +8,8 @@ const BOX_SIZE = 100;
 
 const Canvas = props => {
     const canvasRef = useRef(null)
+    const client = props.client;
+    const bingo = client.getCurrentBingo();
 
     useEffect(() => {
 
@@ -17,7 +19,7 @@ const Canvas = props => {
         canvas.height = BOX_SIZE * 5;
         canvas.width = BOX_SIZE * 5;
 
-        draw(context, 0)
+        draw(context, bingo, 0)
 
     }, [draw])
 

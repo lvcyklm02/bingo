@@ -37,7 +37,7 @@ const Skeleton = ({ userId, handleLogin, handleLogout }) => {
       <h1>actual bingo</h1>
       <h2>spend this summer doing actual things youknowwhadimean</h2>
 
-      <Canvas />
+      <Canvas client={client} />
     </GoogleOAuthProvider>
   );
 };

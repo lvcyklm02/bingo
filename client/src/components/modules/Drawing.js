@@ -26,9 +26,10 @@ const COLORS_LIGHT = COLORS.map((color) => color + '60');
  * @param cts context of the canvas to draw on
  * @param x x position of center of box
  * @param y y position of center of box
+ * @param text fill text
  * @param color color index
  */
-function drawColorBox(ctx, x, y, color) {
+function drawColorBox(ctx, x, y, text, color) {
     const context = ctx;
 
     // save original context settings before we translate and change colors
@@ -47,6 +48,10 @@ function drawColorBox(ctx, x, y, color) {
     context.fillStyle = COLORS[color] ?? assert.fail();
     context.fillRect(-BOX_SIZE / 2, -BOX_SIZE / 2, BOX_SIZE, BOX_SIZE);
 
+    context.fillStyle = "black";
+    context.font = "bold 18px Arial";
+    context.fillText(text, 0, 0);
+
     // reset the origin and styles back to defaults
     context.restore();
 }
@@ -57,11 +62,14 @@ function drawColorBox(ctx, x, y, color) {
  * @param {number} color 
  * @returns 
  */
-const draw = (ctx, color) => {
+const draw = (ctx, bingo, color) => {
+    let counter = 0;
 
     for (let row = 1; row < 6; row++) {
         for (let col = 1; col < 6; col++) {
-            drawColorBox(ctx, (row - 1 / 2) * BOX_SIZE, (col - 1 / 2) * BOX_SIZE, color);
+            let text = bingo.tasks[counter];
+            drawColorBox(ctx, (row - 1 / 2) * BOX_SIZE, (col - 1 / 2) * BOX_SIZE, text, color);
+            counter++;
         }
     }
 

@@ -14,7 +14,7 @@ export class Client {
      * 
      * @returns a bingo object of the current bingo grid
      */
-    get currentBingo() {
+    getCurrentBingo() {
         return this.bingo;
     }
 
