@@ -10,7 +10,7 @@ import "../utilities.css";
 
 import { socket } from "../client-socket.js";
 
-import { get, post } from "../utilities";
+import { get, post } from "../utilities.js";
 
 /**
  * Define the "App" component
